@@ -4,6 +4,7 @@ using EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntityFramework.Migrations
 {
     [DbContext(typeof(TareasContext))]
-    partial class TareasContextModelSnapshot : ModelSnapshot
+    [Migration("20220824192820_ColumnPesoCategoria")]
+    partial class ColumnPesoCategoria
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,6 +31,7 @@ namespace EntityFramework.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Descripcion")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
@@ -42,20 +45,6 @@ namespace EntityFramework.Migrations
                     b.HasKey("CategoriaId");
 
                     b.ToTable("Categoria", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            CategoriaId = new Guid("89d9dacc-e2a6-4ac0-af03-7f3a542a0107"),
-                            Nombre = "Actividades Pendientes",
-                            Peso = 20
-                        },
-                        new
-                        {
-                            CategoriaId = new Guid("89d9dacc-e2a6-4ac0-af03-7f3a542a0102"),
-                            Nombre = "Actividades Personales",
-                            Peso = 50
-                        });
                 });
 
             modelBuilder.Entity("EntityFramework.Models.Tarea", b =>
@@ -68,6 +57,7 @@ namespace EntityFramework.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Descripcion")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FechaCreacion")
@@ -86,24 +76,6 @@ namespace EntityFramework.Migrations
                     b.HasIndex("CateogoriaId");
 
                     b.ToTable("Tarea", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            TareaId = new Guid("89d9dacc-e2a6-4ac0-af03-7f3a542a0110"),
-                            CateogoriaId = new Guid("89d9dacc-e2a6-4ac0-af03-7f3a542a0107"),
-                            FechaCreacion = new DateTime(2022, 8, 24, 14, 52, 6, 438, DateTimeKind.Local).AddTicks(8253),
-                            PrioridadTarea = 1,
-                            Titulo = "Pagos de servicios publicos"
-                        },
-                        new
-                        {
-                            TareaId = new Guid("89d9dacc-e2a6-4ac0-af03-7f3a542a0111"),
-                            CateogoriaId = new Guid("89d9dacc-e2a6-4ac0-af03-7f3a542a0102"),
-                            FechaCreacion = new DateTime(2022, 8, 24, 14, 52, 6, 438, DateTimeKind.Local).AddTicks(8287),
-                            PrioridadTarea = 0,
-                            Titulo = "Terminar de ver pelicula en netflix"
-                        });
                 });
 
             modelBuilder.Entity("EntityFramework.Models.Tarea", b =>
